@@ -1,0 +1,36 @@
+8
+E TR
+R +TR
+R #
+T FY
+Y *FY
+Y #
+F (E)
+F i
+6
+E E+T 
+E T 
+T T*F 
+T F
+F (E)
+F i
+4
+S AS
+S b
+A SA
+A a
+6
+E E+T 
+E T 
+T T*F 
+T F
+F (E)
+F i
+3
+S AA
+A aA
+A b
+3
+S AA
+A aA
+A b

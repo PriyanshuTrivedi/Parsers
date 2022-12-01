@@ -1,0 +1,480 @@
+LL1 parse table
+
+First of the variables are
+
+E -> { ( ,i , }
+F -> { ( ,i , }
+R -> { # ,+ , }
+T -> { ( ,i , }
+Y -> { # ,* , }
+
+Follow of the variables are
+
+E -> { $ ,) , }
+F -> { $ ,) ,* ,+ , }
+R -> { $ ,) , }
+T -> { $ ,) ,+ , }
+Y -> { $ ,) ,+ , }
+
+Assuming the productions to be numebered as follows then parse table will be-
+
+0 -> E TR
+6 -> F (E)
+7 -> F i
+2 -> R #
+1 -> R +TR
+3 -> T FY
+5 -> Y #
+4 -> Y *FY
+
+|      | $    | (    | )    | *    | +    | i    |
+| E    |      | 0    |      |      |      | 0    |
+| F    |      | 6    |      |      |      | 7    |
+| R    | 2    |      | 2    |      | 1    |      |
+| T    |      | 3    |      |      |      | 3    |
+| Y    | 5    |      | 5    | 4    | 5    |      |
+
+************************************************************************************************************************
+LR0 parse table
+
+LR1 itemset, total states-> 12
+
+State->0
+@ .E
+E .E+T
+E .T
+T .T*F
+T .F
+F .(E)
+F .i
+
+State->1
+F (.E)
+E .E+T
+E .T
+T .T*F
+T .F
+F .(E)
+F .i
+
+State->2
+@ E.
+E E.+T
+
+State->3
+T F.
+
+State->4
+E T.
+T T.*F
+
+State->5
+F i.
+
+State->6
+F (E.)
+E E.+T
+
+State->7
+E E+.T
+T .T*F
+T .F
+F .(E)
+F .i
+
+State->8
+T T*.F
+F .(E)
+F .i
+
+State->9
+F (E).
+
+State->10
+E E+T.
+T T.*F
+
+State->11
+T T*F.
+
+Information regarding goto
+
+| From | variable/terminal | To |
+|  0   |         (         | 1  |
+|  0   |         E         | 2  |
+|  0   |         F         | 3  |
+|  0   |         T         | 4  |
+|  0   |         i         | 5  |
+|  1   |         (         | 1  |
+|  1   |         E         | 6  |
+|  1   |         F         | 3  |
+|  1   |         T         | 4  |
+|  1   |         i         | 5  |
+|  2   |         +         | 7  |
+|  4   |         *         | 8  |
+|  6   |         )         | 9  |
+|  6   |         +         | 7  |
+|  7   |         (         | 1  |
+|  7   |         F         | 3  |
+|  7   |         T         | 10 |
+|  7   |         i         | 5  |
+|  8   |         (         | 1  |
+|  8   |         F         | 11 |
+|  8   |         i         | 5  |
+|  10  |         *         | 8  |
+
+Assuming the productions to be numebered as follows then parse table will be-
+
+0 -> E E+T
+1 -> E T
+4 -> F (E)
+5 -> F i
+3 -> T F
+2 -> T T*F
+
+|          |  $       |  (       |  )       |  *       |  +       |  i       |  E       |  F       |  T       |
+|  0       |          |   S1     |          |          |          |   S5     |   2      |   3      |   4      |
+|  1       |          |   S1     |          |          |          |   S5     |   6      |   3      |   4      |
+|  2       |   Acc    |   Acc    |   Acc    |   Acc    |   S7,Acc |   Acc    |          |          |          |
+|  3       |   R3     |   R3     |   R3     |   R3     |   R3     |   R3     |          |          |          |
+|  4       |   R1     |   R1     |   R1     |   S8,R1  |   R1     |   R1     |          |          |          |
+|  5       |   R5     |   R5     |   R5     |   R5     |   R5     |   R5     |          |          |          |
+|  6       |          |          |   S9     |          |   S7     |          |          |          |          |
+|  7       |          |   S1     |          |          |          |   S5     |          |   3      |   10     |
+|  8       |          |   S1     |          |          |          |   S5     |          |   11     |          |
+|  9       |   R4     |   R4     |   R4     |   R4     |   R4     |   R4     |          |          |          |
+|  10      |   R0     |   R0     |   R0     |   S8,R0  |   R0     |   R0     |          |          |          |
+|  11      |   R2     |   R2     |   R2     |   R2     |   R2     |   R2     |          |          |          |
+
+************************************************************************************************************************
+LR1 parse table
+
+LR1 itemset, total states-> 8
+
+State->0
+@ .S
+S .AS
+S .b
+A .SA
+A .a
+
+State->1
+S A.S
+S .AS
+S .b
+A .SA
+A .a
+
+State->2
+@ S.
+A S.A
+A .SA
+A .a
+S .AS
+S .b
+
+State->3
+A a.
+
+State->4
+S b.
+
+State->5
+S AS.
+A S.A
+A .SA
+A .a
+S .AS
+S .b
+
+State->6
+A SA.
+S A.S
+S .AS
+S .b
+A .SA
+A .a
+
+State->7
+A S.A
+A .SA
+A .a
+S .AS
+S .b
+
+Information regarding goto
+
+| From | variable/terminal | To |
+|  0   |         A         | 1  |
+|  0   |         S         | 2  |
+|  0   |         a         | 3  |
+|  0   |         b         | 4  |
+|  1   |         A         | 1  |
+|  1   |         S         | 5  |
+|  1   |         a         | 3  |
+|  1   |         b         | 4  |
+|  2   |         A         | 6  |
+|  2   |         S         | 7  |
+|  2   |         a         | 3  |
+|  2   |         b         | 4  |
+|  5   |         A         | 6  |
+|  5   |         S         | 7  |
+|  5   |         a         | 3  |
+|  5   |         b         | 4  |
+|  6   |         A         | 1  |
+|  6   |         S         | 5  |
+|  6   |         a         | 3  |
+|  6   |         b         | 4  |
+|  7   |         A         | 6  |
+|  7   |         S         | 7  |
+|  7   |         a         | 3  |
+|  7   |         b         | 4  |
+
+Information regarding reduce
+
+state-> 2 ,Reduced-> @ S.
+state-> 3 ,Reduced-> A a.
+state-> 4 ,Reduced-> S b.
+state-> 5 ,Reduced-> S AS.
+state-> 6 ,Reduced-> A SA.
+
+Assuming the productions to be numebered as follows then parse table will be-
+
+2 -> A SA
+3 -> A a
+0 -> S AS
+1 -> S b
+
+|      |  $   |  a   |  b   |  A   |  S   |
+|  0   |      |  S3  |  S4  |  1   |  2   |
+|  1   |      |  S3  |  S4  |  1   |  5   |
+|  2   |  Acc |  S3  |  S4  |  6   |  7   |
+|  3   |      |  R3  |  R3  |      |      |
+|  4   |  R1  |  R1  |  R1  |      |      |
+|  5   |  R0  |  R0  |  R0  |  6   |  7   |
+|  6   |      |  R2  |  R2  |  1   |  5   |
+|  7   |      |  S3  |  S4  |  6   |  7   |
+
+************************************************************************************************************************
+Operator precedence parse table
+
+Leading of the variables are
+
+E -> { ( ,* ,+ ,i , }
+F -> { ( ,i , }
+T -> { ( ,* ,i , }
+
+Trailing of the variables are
+
+E -> { ) ,* ,+ ,i , }
+F -> { ) ,i , }
+T -> { ) ,* ,i , }
+
+|             | $           | (           | )           | *           | +           | i           |
+| $           |             |             |             |             |             |             |
+| (           |             |             |             |             |             |             |
+| )           |             |             |             |  .>         |  .>         |             |
+| *           |             |  <.         |             |  .>         |  .>         |  <.         |
+| +           |             |  <.         |             |  <.         |  .>         |  <.         |
+| i           |             |             |             |  .>         |  .>         |             |
+
+************************************************************************************************************************
+CLR1 parse table
+
+First of the variables are
+
+A -> { a ,b , }
+S -> { a ,b , }
+
+Follow of the variables are
+
+A -> { $ ,a ,b , }
+S -> { $ , }
+
+CLR1 itemset, total states-> 10
+
+State->0
+productions    lookahead
+@ .S          $,
+S .AA          $,
+A .aA          a,b,
+A .b          a,b,
+
+State->1
+productions    lookahead
+S A.A          $,
+A .aA          $,
+A .b          $,
+
+State->2
+productions    lookahead
+@ S.          $,
+
+State->3
+productions    lookahead
+A a.A          a,b,
+A .aA          a,b,
+A .b          a,b,
+
+State->4
+productions    lookahead
+A b.          a,b,
+
+State->5
+productions    lookahead
+S AA.          $,
+
+State->6
+productions    lookahead
+A a.A          $,
+A .aA          $,
+A .b          $,
+
+State->7
+productions    lookahead
+A b.          $,
+
+State->8
+productions    lookahead
+A aA.          a,b,
+
+State->9
+productions    lookahead
+A aA.          $,
+
+Information regarding goto
+
+| From | variable/terminal | To |
+|  0   |         A         | 1  |
+|  0   |         S         | 2  |
+|  0   |         a         | 3  |
+|  0   |         b         | 4  |
+|  1   |         A         | 5  |
+|  1   |         a         | 6  |
+|  1   |         b         | 7  |
+|  3   |         A         | 8  |
+|  3   |         a         | 3  |
+|  3   |         b         | 4  |
+|  6   |         A         | 9  |
+|  6   |         a         | 6  |
+|  6   |         b         | 7  |
+
+Information regarding reduce
+
+state-> 2 ,Reduced-> @ S.
+state-> 4 ,Reduced-> A b.
+state-> 5 ,Reduced-> S AA.
+state-> 7 ,Reduced-> A b.
+state-> 8 ,Reduced-> A aA.
+state-> 9 ,Reduced-> A aA.
+
+Assuming the productions to be numebered as follows then parse table will be-
+
+1 -> A aA
+2 -> A b
+0 -> S AA
+
+|      |  $   |  a   |  b   |  A   |  S   |
+|  0   |      |  S3  |  S4  |  1   |  2   |
+|  1   |      |  S6  |  S7  |  5   |      |
+|  2   |  Acc |      |      |      |      |
+|  3   |      |  S3  |  S4  |  8   |      |
+|  4   |      |  R2  |  R2  |      |      |
+|  5   |  R0  |      |      |      |      |
+|  6   |      |  S6  |  S7  |  9   |      |
+|  7   |  R2  |      |      |      |      |
+|  8   |      |  R1  |  R1  |      |      |
+|  9   |  R1  |      |      |      |      |
+
+************************************************************************************************************************
+LALR1 parse table
+
+First of the variables are
+
+A -> { a ,b , }
+S -> { a ,b , }
+
+Follow of the variables are
+
+A -> { $ ,a ,b , }
+S -> { $ , }
+
+LALR1 itemset, total states-> 7
+
+State->0
+productions    lookahead
+@ .S          $,
+S .AA          $,
+A .aA          a,b,
+A .b          a,b,
+
+State->1
+productions    lookahead
+S A.A          $,
+A .aA          $,
+A .b          $,
+
+State->2
+productions    lookahead
+@ S.          $,
+
+State->36
+productions    lookahead
+A a.A          $,a,b,
+A .aA          $,a,b,
+A .b          $,a,b,
+
+State->47
+productions    lookahead
+A b.          $,a,b,
+
+State->5
+productions    lookahead
+S AA.          $,
+
+State->89
+productions    lookahead
+A aA.          $,a,b,
+
+Information regarding goto
+
+| From | variable/terminal | To |
+|  0   |         A         | 1  |
+|  0   |         S         | 2  |
+|  0   |         a         | 3  |
+|  0   |         b         | 4  |
+|  1   |         A         | 5  |
+|  1   |         a         | 6  |
+|  1   |         b         | 7  |
+|  3   |         A         | 8  |
+|  3   |         a         | 3  |
+|  3   |         b         | 4  |
+|  6   |         A         | 9  |
+|  6   |         a         | 6  |
+|  6   |         b         | 7  |
+
+Information regarding reduce
+
+state-> 2 ,Reduced-> @ S.
+state-> 4 ,Reduced-> A b.
+state-> 5 ,Reduced-> S AA.
+state-> 7 ,Reduced-> A b.
+state-> 8 ,Reduced-> A aA.
+state-> 9 ,Reduced-> A aA.
+
+Assuming the productions to be numebered as follows and after combining the common core, parse table will be-
+
+1 -> A aA
+2 -> A b
+0 -> S AA
+
+|       |  $    |  a    |  b    |  A    |  S    |
+|  0    |       |  S36  |  S47  |  1    |  2    |
+|  1    |       |  S36  |  S47  |  5    |       |
+|  2    |  Acc  |       |       |       |       |
+|  36   |       |  S36  |  S47  |  89   |       |
+|  47   |  R2   |  R2   |  R2   |       |       |
+|  5    |  R0   |       |       |       |       |
+|  89   |  R1   |  R1   |  R1   |       |       |
+
+************************************************************************************************************************
